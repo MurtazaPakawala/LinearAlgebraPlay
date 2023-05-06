@@ -14,6 +14,12 @@ const theme = createTheme({
       dark: '#ba000d',
       contrastText: '#000',
     },
+    nav: {
+      light: '#ff7961',
+    },
+    success: {
+      main: '#ba000d',
+    },
   },
 });
 export default theme;
