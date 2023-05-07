@@ -17,6 +17,9 @@ const theme = createTheme({
     nav: {
       light: '#ff7961',
     },
+    textCol: {
+      dark: '#ba000d',
+    },
     success: {
       main: '#ba000d',
     },

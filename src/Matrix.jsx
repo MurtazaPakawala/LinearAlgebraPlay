@@ -1,15 +1,32 @@
-import { Button } from '@mui/material';
+import { Button, Paper, ThemeProvider } from '@mui/material';
 import React, { useState } from 'react';
+import theme from './colortheme';
 
 const Matrix = ({ row, col }) => {
-  const [matrix, setMatrix] = useState(
-    Array(row)
-      .fill()
-      .map(() => Array(col).fill(Math.floor(Math.random() * 1000)))
-  );
+  const arr = Array(parseInt(row))
+    .fill()
+    .map(() =>
+      Array(parseInt(col))
+        .fill()
+        .map(() => Math.floor(Math.random() * 100))
+    );
+
+  const [matrix, setMatrix] = useState(arr);
   console.log(row, col);
   console.log('see', matrix);
-  return matrix.map((col) => col.map((elem) => <Button>{elem}</Button>));
+  return (
+    <Paper elevation={1} square>
+      {matrix.map((col) => (
+        <div>
+          {col.map((elem) => (
+            <ThemeProvider theme={theme}>
+              <Button>{elem}</Button>
+            </ThemeProvider>
+          ))}
+        </div>
+      ))}
+    </Paper>
+  );
 };
 
 export default Matrix;

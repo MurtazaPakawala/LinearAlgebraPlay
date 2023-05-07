@@ -64,11 +64,18 @@ const Main = () => {
         <InnerGrid setMatrix={setMatrixOne} showMatrix={setShowMatrixOne} />
       </Grid>
       <Grid container xs={6} spacing={3}>
-        <InnerGrid setMatrix={setMatrixOne} showMatrix={setShowMatrixTwo} />
+        <InnerGrid setMatrix={setMatrixTwo} showMatrix={setShowMatrixTwo} />
       </Grid>
       {showMatrixOne && (
         <Grid>
           <Matrix row={matrixOne.row} col={matrixOne.col} />
+        </Grid>
+      )}
+
+      {showMatrixOne && showMatrixTwo && <h1>multiply</h1>}
+      {showMatrixTwo && (
+        <Grid>
+          <Matrix row={matrixTwo.row} col={matrixTwo.col} />
         </Grid>
       )}
     </Grid>
