@@ -66,7 +66,7 @@ const Main = () => {
   const [matrixTwo, setMatrixTwo] = useState([]);
   const [showMatrixOne, setShowMatrixOne] = useState(false);
   const [showMatrixTwo, setShowMatrixTwo] = useState(false);
-
+  const [ansMatrix, setAnsMatrix] = useState([]);
   const handleMultiply = () => {
     // cant multuply if teh
     if (matrixOne[0].length !== matrixTwo.length) {
@@ -77,11 +77,18 @@ const Main = () => {
     let res = Array(matrixOne.length);
     matrixOne.forEach((row, index) => {
       const resRow = [];
-      console.log('this is the row', row);
       for (let i = 0; i < matrixTwo[0].length; i++) {
         let sum = 0;
+        for (let k = 0; k < matrixTwo.length; k++) {
+          console.log(matrixTwo[k][i], row[k]);
+          sum += matrixTwo[k][i] * row[k];
+        }
+        resRow.push(sum);
       }
+      res.push(resRow);
     });
+    console.log(res, 'this is the result');
+    setAnsMatrix(res);
   };
   return (
     <Grid container style={{ marginTop: 50 }}>
@@ -132,6 +139,29 @@ const Main = () => {
             <Matrix matrix={matrixTwo} />
           </Grid>
         )}
+
+        <Grid
+          container
+          spacing={2}
+          marginTop={2}
+          height={300}
+          width={300}
+          display={'flex'}
+          justifyContent={'center'}
+          xs={12}
+        >
+          {ansMatrix.length !== 0 && (
+            <Grid
+              item
+              xs={12}
+              display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
+            >
+              <Matrix matrix={ansMatrix} />
+            </Grid>
+          )}
+        </Grid>
       </Grid>
     </Grid>
   );
