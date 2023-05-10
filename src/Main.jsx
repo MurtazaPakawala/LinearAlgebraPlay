@@ -4,6 +4,7 @@ import theme from './colortheme';
 import { ThemeProvider } from '@mui/material/styles';
 import Matrix from './Matrix';
 import CloseIcon from '@mui/icons-material/Close';
+import RowCol from './RowCol';
 const InnerGrid = ({ setMatrix, showMatrix }) => {
   let col = null;
   let row = null;
@@ -122,10 +123,9 @@ const Main = () => {
             flexDirection={'column'}
           >
             <CloseIcon sx={{ fontSize: 65 }} />
-
-            <Button variant='outlined' onClick={handleMultiply}>
-              Multiply
-            </Button>
+            <ThemeProvider theme={theme}>
+              <RowCol />
+            </ThemeProvider>
           </Grid>
         )}
         {showMatrixTwo && (

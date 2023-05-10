@@ -11,11 +11,8 @@ function Navbar() {
   console.log(theme.palette.secondary.main);
   return (
     <ThemeProvider theme={theme}>
-      <AppBar color='nav' position='static'>
-        <Container
-          sx={{ backgroundColor: theme.palette.secondary.light }}
-          maxWidth='xl'
-        >
+      <AppBar position='static'>
+        <Container maxWidth='xl'>
           <Toolbar disableGutters>
             <img
               src={logo}
