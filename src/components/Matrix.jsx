@@ -1,6 +1,6 @@
 import { Button, Paper, ThemeProvider } from '@mui/material';
 import React, { useState } from 'react';
-import theme from './colortheme';
+import theme from '../colortheme';
 
 const Matrix = ({ matrix }) => {
   return (

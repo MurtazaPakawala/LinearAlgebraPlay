@@ -3,12 +3,11 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import logo from './static/logo.png';
-import theme from './colortheme';
+import logo from '../static/logo.png';
+import theme from '../colortheme';
 import { ThemeProvider } from '@emotion/react';
 
 function Navbar() {
-  console.log(theme.palette.secondary.main);
   return (
     <ThemeProvider theme={theme}>
       <AppBar position='static'>

@@ -1,8 +1,8 @@
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import theme from './colortheme';
+import theme from '../colortheme';
 import { ThemeProvider } from '@mui/material/styles';
-import Matrix from './Matrix';
+import Matrix from '../components/Matrix';
 import CloseIcon from '@mui/icons-material/Close';
 import RowCol from './RowCol';
 const InnerGrid = ({ setMatrix, showMatrix }) => {
@@ -123,9 +123,6 @@ const Main = () => {
             flexDirection={'column'}
           >
             <CloseIcon sx={{ fontSize: 65 }} />
-            <ThemeProvider theme={theme}>
-              <RowCol />
-            </ThemeProvider>
           </Grid>
         )}
         {showMatrixTwo && (
