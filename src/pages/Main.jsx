@@ -1,10 +1,12 @@
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import theme from '../colortheme';
 import { ThemeProvider } from '@mui/material/styles';
 import Matrix from '../components/Matrix';
 import CloseIcon from '@mui/icons-material/Close';
 import RowCol from './RowCol';
+import bg from '../static/mathgif.gif';
+import { Link } from 'react-router-dom';
 const InnerGrid = ({ setMatrix, showMatrix }) => {
   let col = null;
   let row = null;
@@ -115,7 +117,7 @@ const Main = () => {
 
         {showMatrixOne && showMatrixTwo && (
           <Grid
-            item
+            container
             xs={2}
             display={'flex'}
             justifyContent={'center'}
@@ -123,6 +125,30 @@ const Main = () => {
             flexDirection={'column'}
           >
             <CloseIcon sx={{ fontSize: 65 }} />
+            <Grid item>
+              <Paper
+                sx={{
+                  minHeight: 100,
+                  minWidth: 200,
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
+                  gap: '4',
+                  backgroundImage: { bg },
+                }}
+              >
+                <ThemeProvider theme={theme}>
+                  <Button variant='outlined' size={'small'}>
+                    <Link
+                      to='/rowcol'
+                      state={{ matrixOne, matrixTwo }}
+                      className='link'
+                    >
+                      Check Row Col Multiplication
+                    </Link>
+                  </Button>
+                </ThemeProvider>
+              </Paper>
+            </Grid>
           </Grid>
         )}
         {showMatrixTwo && (
