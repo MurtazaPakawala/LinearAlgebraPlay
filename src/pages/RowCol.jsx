@@ -18,13 +18,20 @@ const RowCol = () => {
     console.log('starting!!');
     let delay = 1000;
     for (let i = 0; i < matrixOne.length; i++) {
-      for (let j = 0; j < matrixOne[0].length; j++) {
-        setTimeout(() => {
-          const dummy = [...matrixOneCol];
-          dummy[i * matrixOne.length + j] = true;
-          setMatrixOneCol(dummy); // set color of cell to red
-        }, delay);
-        delay += 1000;
+      for (let k = 0; k < matrixTwo[0].length; k++) {
+        for (let j = 0; j < matrixOne[0].length; j++) {
+          setTimeout(() => {
+            // setting the first mtr
+            const dummyMtrOne = [...matrixOneCol];
+            dummyMtrOne[i * matrixOne.length + j] = true;
+            // changing the mtr 2
+            const dummyMtrTwo = [...matrixTwoCol];
+            dummyMtrTwo[j * matrixTwo.length + k] = true;
+            setMatrixOneCol(dummyMtrOne); // set color of cell to red
+            setMatrixTwoCol(dummyMtrTwo); // set color of cell to red
+          }, delay);
+          delay += 1000;
+        }
       }
     }
   };
@@ -56,9 +63,7 @@ const InnerMatrixComp = ({ matrix, matrixCol }) => {
           {col.map((elem, j) => (
             <ThemeProvider theme={theme}>
               {matrixCol[matrix[0].length * i + j] ? (
-                <Button sx={{ backgroundColor: 'HighlightText' }}>
-                  {elem}
-                </Button>
+                <Button sx={{ backgroundColor: 'bisque' }}>{elem}</Button>
               ) : (
                 <Button sx={{ backgroundColor: 'aliceblue' }}>{elem}</Button>
               )}
