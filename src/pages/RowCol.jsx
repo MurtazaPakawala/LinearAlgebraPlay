@@ -23,17 +23,30 @@ const RowCol = () => {
   const [resMatrixCol, setResMatrixCol] = useState(
     Array(resMatrix.length * resMatrix[0].length).fill(false)
   );
+  // making the pause thingy
+  const [isPaused, setIsPaused] = useState(false);
+  console.log('gloval variable ', isPaused);
   const startVisualizer = () => {
     // first need to color the
     // doing all stuff in an async
     async function doColor() {
       console.log('starting!!', resMatrix);
-      let delay = 1000;
       for (let i = 0; i < matrixOne.length; i++) {
         for (let k = 0; k < matrixTwo[0].length; k++) {
           let sum = 0;
           for (let j = 0; j < matrixOne[0].length; j++) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            console.log(isPaused);
+            if (isPaused) {
+              // Wait for isPaused to become false
+              await new Promise((resolve) => {
+                const intervalId = setInterval(() => {
+                  if (!isPaused) {
+                    clearInterval(intervalId);
+                    resolve();
+                  }
+                }, 100);
+              });
+            }
             // setting the first mtr
             const dummyMtrOne = [...matrixOneCol];
             dummyMtrOne[i * matrixOne[0].length + j] = true;
@@ -55,6 +68,7 @@ const RowCol = () => {
             } else {
               sum += matrixOne[i][j] * matrixTwo[j][k];
             }
+            await new Promise((resolve) => setTimeout(resolve, 1000));
           }
         }
       }
@@ -65,12 +79,7 @@ const RowCol = () => {
       console.log('completed coloring');
     }
 
-    // call the function and wrap it in a Promise
-    new Promise((resolve) => {
-      doColor().then(() => {
-        resolve();
-      });
-    });
+    doColor();
   };
 
   useEffect(() => {
@@ -98,6 +107,7 @@ const RowCol = () => {
       >
         <Typography>Matrix A</Typography>
         <InnerMatrixComp matrix={matrixOne} matrixCol={matrixOneCol} />
+        <Button onClick={() => setIsPaused(true)}>Stop</Button>
       </Grid>
       <Grid
         item
